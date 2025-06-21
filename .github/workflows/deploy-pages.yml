@@ -1,0 +1,115 @@
+name: Deploy to GitHub Pages
+
+# Trigger the workflow on push to main branch or manual dispatch
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install minification tools
+        run: npm install -g terser html-minifier-terser csso-cli
+
+      - name: Build and minify site
+        run: |
+          # Create a build directory
+          mkdir -p _site
+          
+          # Copy all files to the build directory
+          cp -r * _site/ || true
+          
+          # Remove .github directory from the build (optional)
+          rm -rf _site/.github || true
+          
+          # Make sure index.html exists (rename progress-tracker.html if needed)
+          if [ -f "_site/progress-tracker.html" ] && [ ! -f "_site/index.html" ]; then
+            cp _site/progress-tracker.html _site/index.html
+          fi
+          
+          # Minify HTML files
+          echo "Minifying HTML files..."
+          find _site -name "*.html" -type f | while read file; do
+            echo "Minifying: $file"
+            html-minifier-terser \
+              --collapse-whitespace \
+              --remove-comments \
+              --remove-optional-tags \
+              --remove-redundant-attributes \
+              --remove-script-type-attributes \
+              --remove-tag-whitespace \
+              --use-short-doctype \
+              --minify-css true \
+              --minify-js true \
+              --output-file "$file.min" \
+              "$file"
+            mv "$file.min" "$file"
+          done
+          
+          # Minify standalone CSS files (if any)
+          echo "Minifying CSS files..."
+          find _site -name "*.css" -type f | while read file; do
+            echo "Minifying CSS: $file"
+            csso-cli --input "$file" --output "$file.min"
+            mv "$file.min" "$file"
+          done
+          
+          # Minify standalone JavaScript files (if any)
+          echo "Minifying JavaScript files..."
+          find _site -name "*.js" -type f | while read file; do
+            echo "Minifying JS: $file"
+            terser "$file" --compress --mangle --output "$file.min"
+            mv "$file.min" "$file"
+          done
+          
+          # Add .nojekyll to prevent Jekyll processing
+          touch _site/.nojekyll
+          
+          echo "Build complete! Files in _site:"
+          ls -la _site/
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+  # Deployment job
+  deploy:
+    environment:
+      name: gh-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        
