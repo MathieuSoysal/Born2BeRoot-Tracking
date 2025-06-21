@@ -173,6 +173,7 @@
             color: white;
             padding: 30px;
             text-align: center;
+            position: relative;
         }
 
         .header h1 {
@@ -184,6 +185,94 @@
         .header p {
             font-size: 1.1rem;
             opacity: 0.9;
+        }
+
+        .github-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(0, 0, 0, 0.9);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+
+        .github-button::before,
+        .github-button::after {
+            content: '✨';
+            position: absolute;
+            font-size: 10px;
+            color: white;
+            opacity: 0;
+            animation: borderTwinkle 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .github-button::before {
+            top: -8px;
+            left: -8px;
+            animation-delay: 0s;
+        }
+
+        .github-button::after {
+            bottom: -8px;
+            right: -8px;
+            animation-delay: 1s;
+        }
+
+        .github-button:hover::before,
+        .github-button:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes borderTwinkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0.5) rotate(0deg);
+            }
+            25% {
+                opacity: 0.8;
+                transform: scale(1) rotate(90deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+            }
+            75% {
+                opacity: 0.8;
+                transform: scale(1) rotate(270deg);
+            }
+        }
+
+        .github-button:hover {
+            background: rgba(0, 0, 0, 0.9);
+            border-color: rgba(0, 0, 0, 1);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .github-button:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.8);
+            outline-offset: 2px;
+        }
+
+        .github-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
         }
 
         .progress-overview {
@@ -717,6 +806,14 @@
                 font-size: 2rem;
             }
 
+            .github-button {
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                padding: 10px 12px;
+                font-size: 0.8rem;
+            }
+
             .achievements {
                 justify-content: center;
             }
@@ -850,6 +947,16 @@
 <body>
     <div class="container">
         <header class="header">
+            <a href="https://github.com/MathieuSoysal/Born2BeRoot-Tracking/" 
+               class="github-button" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               aria-label="View project on GitHub">
+                <svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/>
+                </svg>
+                <span>GitHub</span>
+            </a>
             <h1><span role="img" aria-label="rocket">🚀</span> Born2beRoot Progress Tracker</h1>
             <p>Track your journey to becoming a system administration master!</p>
         </header>
