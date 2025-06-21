@@ -69,8 +69,7 @@ jobs:
               --use-short-doctype \
               --minify-css true \
               --minify-js true \
-              --output-file "$file.min" \
-              "$file"
+              "$file" > "$file.min"
             mv "$file.min" "$file"
           done
           
