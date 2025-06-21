@@ -3,7 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Born2beRoot Progress Tracker</title>
+    <title>Born2beRoot Progress Tracker - 42 School Project Manager | System Administration Learning</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Track your Born2beRoot project progress for 42 School. Complete system administration tasks, monitor VM setup, Debian installation, security configuration, and scripting challenges. Interactive progress tracker with achievements.">
+    <meta name="keywords" content="Born2beRoot, 42 School, system administration, Debian, virtual machine, VM setup, Linux, SSH, firewall, monitoring script, student project tracker, 42 projects">
+    <meta name="author" content="42 School Student Project">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#4facfe">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="Born2beRoot Progress Tracker - 42 School Project Manager">
+    <meta property="og:description" content="Interactive progress tracker for the Born2beRoot project at 42 School. Master system administration fundamentals with guided tasks and achievements.">
+    <meta property="og:image" content="">
+    <meta property="og:site_name" content="Born2beRoot Tracker">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="">
+    <meta property="twitter:title" content="Born2beRoot Progress Tracker - 42 School Project">
+    <meta property="twitter:description" content="Track your system administration learning journey with this interactive Born2beRoot project manager for 42 School students.">
+    <meta property="twitter:image" content="">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Born2beRoot Progress Tracker",
+      "description": "Interactive progress tracker for the Born2beRoot project at 42 School. Helps students track system administration learning tasks.",
+      "url": "",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "educationalUse": "instruction",
+      "learningResourceType": "interactive tool",
+      "about": {
+        "@type": "Course",
+        "name": "Born2beRoot - System Administration",
+        "description": "Learn system administration fundamentals through hands-on experience with virtual machines, Linux, security, and automation.",
+        "provider": {
+          "@type": "Organization",
+          "name": "42 School"
+        }
+      }
+    }
+    </script>
     <style>
         * {
             margin: 0;
@@ -165,6 +230,7 @@
             font-weight: 600;
             color: #374151;
             flex: 1;
+            margin: 0; /* Reset default h2 margin */
         }
 
         .section-progress {
@@ -705,6 +771,84 @@
             born2beRoot: { threshold: 24, title: "Born2beRoot Champion!", message: "Congratulations! You've completed the project!" }
         };
 
+        // Generate sitemap data for SEO
+        function generateSitemap() {
+            const sitemap = {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": window.location.origin
+                    },
+                    {
+                        "@type": "ListItem", 
+                        "position": 2,
+                        "name": "Born2beRoot Progress Tracker",
+                        "item": window.location.href
+                    }
+                ]
+            };
+            
+            // Add sitemap to head
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(sitemap);
+            document.head.appendChild(script);
+        }
+
+        // Update page title based on progress
+        function updatePageTitle() {
+            const completedTasks = document.querySelectorAll('.task.completed').length;
+            const totalTasks = document.querySelectorAll('.task').length;
+            const percentage = Math.round((completedTasks / totalTasks) * 100);
+            
+            let titleSuffix = '';
+            if (percentage > 0) {
+                titleSuffix = ` - ${percentage}% Complete`;
+            }
+            
+            document.title = `Born2beRoot Progress Tracker${titleSuffix} - 42 School Project Manager | System Administration Learning`;
+        }
+
+        // Add structured data for educational content
+        function addEducationalStructuredData() {
+            const sections = document.querySelectorAll('.section');
+            const courseData = {
+                "@context": "https://schema.org",
+                "@type": "Course",
+                "name": "Born2beRoot - System Administration Fundamentals",
+                "description": "Comprehensive system administration course covering virtual machines, Linux configuration, security, and automation scripting.",
+                "provider": {
+                    "@type": "Organization",
+                    "name": "42 School",
+                    "url": "https://42.fr"
+                },
+                "courseCode": "Born2beRoot",
+                "educationalLevel": "Intermediate",
+                "teaches": [
+                    "Virtual Machine Setup and Management",
+                    "Debian Linux Installation and Configuration", 
+                    "System Security and Firewall Configuration",
+                    "SSH Configuration and Management",
+                    "Automated Monitoring Scripts",
+                    "Web Server Setup (Bonus)"
+                ],
+                "coursePrerequisites": "Basic computer literacy and interest in system administration",
+                "timeRequired": "P3D",
+                "inLanguage": "en",
+                "learningResourceType": "hands-on project",
+                "educationalUse": "instruction"
+            };
+            
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(courseData);
+            document.head.appendChild(script);
+        }
+
         // Load saved progress
         function loadProgress() {
             const saved = localStorage.getItem('born2beroot_progress');
@@ -784,6 +928,12 @@
             
             // Calculate estimated time spent
             updateTimeEstimate();
+            
+            // Update page title for SEO
+            updatePageTitle();
+            
+            // Update page title
+            updatePageTitle();
         }
 
         // Check and unlock achievements
@@ -910,6 +1060,11 @@
             
             // Expand first section by default
             document.querySelector('.section').classList.add('expanded');
+            
+            // SEO optimizations
+            generateSitemap();
+            addEducationalStructuredData();
+            updatePageTitle();
         });
 
         // Auto-save every 30 seconds
