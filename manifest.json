@@ -1,0 +1,24 @@
+{
+    "name": "Born2beRoot Progress Tracker",
+    "short_name": "Born2beRoot",
+    "description": "Track your Born2beRoot project progress for 42 School",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#667eea",
+    "theme_color": "#4facfe",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "categories": ["education", "productivity"],
+    "lang": "en"
+}

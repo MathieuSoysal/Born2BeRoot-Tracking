@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Born2beRoot Progress Tracker
+# Educational tool for 42 School students
+
+Sitemap: https://born2beroot-tracking.pages.dev/sitemap.xml
