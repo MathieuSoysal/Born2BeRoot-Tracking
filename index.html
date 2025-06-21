@@ -552,29 +552,34 @@
             <div class="section" data-section="vm-setup">
                 <div class="section-header">
                     <div class="section-icon">✓</div>
-                    <div class="section-title">Virtual Machine Setup</div>
-                    <div class="section-progress">0/4</div>
+                    <div class="section-title">🛠️ Virtual Machine Setup</div>
+                    <div class="section-progress">0/5</div>
                 </div>
                 <div class="tasks">
                     <div class="task" data-task="download-iso">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Download Debian ISO</div>
+                        <div class="task-text">Download Debian 12.5.0 ISO (netinst)</div>
                         <div class="task-time">~10 min</div>
+                    </div>
+                    <div class="task" data-task="install-virtualbox">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Install VirtualBox</div>
+                        <div class="task-time">~15 min</div>
                     </div>
                     <div class="task" data-task="create-vm">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Create VirtualBox VM</div>
-                        <div class="task-time">~15 min</div>
+                        <div class="task-text">Create new VM (8GB RAM, 30GB disk)</div>
+                        <div class="task-time">~10 min</div>
                     </div>
-                    <div class="task" data-task="attach-iso">
+                    <div class="task" data-task="vm-settings">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Attach ISO to VM</div>
-                        <div class="task-time">~5 min</div>
+                        <div class="task-text">Configure VM settings and attach ISO</div>
+                        <div class="task-time">~10 min</div>
                     </div>
                     <div class="task" data-task="first-boot">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">First boot and basic setup</div>
-                        <div class="task-time">~20 min</div>
+                        <div class="task-text">Boot VM and verify ISO loading</div>
+                        <div class="task-time">~5 min</div>
                     </div>
                 </div>
             </div>
@@ -582,48 +587,53 @@
             <div class="section" data-section="debian-install">
                 <div class="section-header">
                     <div class="section-icon">✓</div>
-                    <div class="section-title">Debian Installation</div>
-                    <div class="section-progress">0/8</div>
+                    <div class="section-title">🌀 Debian Installation</div>
+                    <div class="section-progress">0/9</div>
                 </div>
                 <div class="tasks">
+                    <div class="task" data-task="install-start">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Start Debian installation process</div>
+                        <div class="task-time">~5 min</div>
+                    </div>
                     <div class="task" data-task="language-locale">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Configure language and locale</div>
+                        <div class="task-text">Configure language, country and keyboard</div>
                         <div class="task-time">~5 min</div>
                     </div>
                     <div class="task" data-task="network-config">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Configure network</div>
+                        <div class="task-text">Configure network and hostname ([login]42)</div>
                         <div class="task-time">~10 min</div>
                     </div>
-                    <div class="task" data-task="hostname-setup">
+                    <div class="task" data-task="domain-setup">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Set hostname (login42)</div>
-                        <div class="task-time">~5 min</div>
+                        <div class="task-text">Set domain name (leave empty)</div>
+                        <div class="task-time">~2 min</div>
                     </div>
-                    <div class="task" data-task="partition-disks">
+                    <div class="task" data-task="root-password">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Partition disks with LVM encryption</div>
-                        <div class="task-time">~30 min</div>
+                        <div class="task-text">Set root password (strong password)</div>
+                        <div class="task-time">~5 min</div>
                     </div>
                     <div class="task" data-task="user-setup">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Set up users and passwords</div>
+                        <div class="task-text">Create user account ([login]42)</div>
                         <div class="task-time">~10 min</div>
+                    </div>
+                    <div class="task" data-task="partition-disks">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Configure LVM with encryption (manual partitioning)</div>
+                        <div class="task-time">~45 min</div>
                     </div>
                     <div class="task" data-task="package-manager">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Configure package manager</div>
-                        <div class="task-time">~10 min</div>
+                        <div class="task-text">Configure package manager (no extra software)</div>
+                        <div class="task-time">~15 min</div>
                     </div>
                     <div class="task" data-task="grub-install">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Install GRUB bootloader</div>
-                        <div class="task-time">~5 min</div>
-                    </div>
-                    <div class="task" data-task="finish-install">
-                        <div class="task-checkbox">✓</div>
-                        <div class="task-text">Finish installation and reboot</div>
+                        <div class="task-text">Install GRUB bootloader and finish</div>
                         <div class="task-time">~10 min</div>
                     </div>
                 </div>
@@ -632,39 +642,49 @@
             <div class="section" data-section="system-config">
                 <div class="section-header">
                     <div class="section-icon">✓</div>
-                    <div class="section-title">System Configuration</div>
-                    <div class="section-progress">0/6</div>
+                    <div class="section-title">⚙️ System Configuration</div>
+                    <div class="section-progress">0/8</div>
                 </div>
                 <div class="tasks">
                     <div class="task" data-task="first-login">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">First connection and basic setup</div>
+                        <div class="task-text">First login and system verification</div>
+                        <div class="task-time">~10 min</div>
+                    </div>
+                    <div class="task" data-task="apt-update">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Update system packages (apt update & upgrade)</div>
                         <div class="task-time">~15 min</div>
                     </div>
                     <div class="task" data-task="sudo-install">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Install and configure sudo</div>
+                        <div class="task-text">Install and configure sudo with strict rules</div>
                         <div class="task-time">~20 min</div>
                     </div>
                     <div class="task" data-task="user-groups">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Create users and groups</div>
-                        <div class="task-time">~15 min</div>
+                        <div class="task-text">Add user to sudo and user42 groups</div>
+                        <div class="task-time">~10 min</div>
                     </div>
                     <div class="task" data-task="ssh-setup">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Install and configure SSH</div>
+                        <div class="task-text">Install OpenSSH, configure port 4242, disable root login</div>
                         <div class="task-time">~25 min</div>
                     </div>
                     <div class="task" data-task="ufw-firewall">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Configure UFW firewall</div>
+                        <div class="task-text">Install UFW, enable port 4242, configure firewall</div>
                         <div class="task-time">~15 min</div>
                     </div>
                     <div class="task" data-task="password-policy">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Implement password policy</div>
+                        <div class="task-text">Configure strong password policy (pwquality)</div>
                         <div class="task-time">~20 min</div>
+                    </div>
+                    <div class="task" data-task="hostname-check">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Verify hostname and implement hostname change script</div>
+                        <div class="task-time">~10 min</div>
                     </div>
                 </div>
             </div>
@@ -672,23 +692,28 @@
             <div class="section" data-section="monitoring">
                 <div class="section-header">
                     <div class="section-icon">✓</div>
-                    <div class="section-title">Monitoring Script</div>
-                    <div class="section-progress">0/3</div>
+                    <div class="section-title">🧾 Monitoring Script</div>
+                    <div class="section-progress">0/4</div>
                 </div>
                 <div class="tasks">
                     <div class="task" data-task="create-script">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Create monitoring.sh script</div>
-                        <div class="task-time">~45 min</div>
+                        <div class="task-text">Create monitoring.sh with system information display</div>
+                        <div class="task-time">~60 min</div>
+                    </div>
+                    <div class="task" data-task="script-permissions">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Set proper script permissions and location</div>
+                        <div class="task-time">~5 min</div>
                     </div>
                     <div class="task" data-task="test-script">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Test script functionality</div>
+                        <div class="task-text">Test script functionality and output format</div>
                         <div class="task-time">~15 min</div>
                     </div>
                     <div class="task" data-task="crontab-setup">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Configure crontab automation</div>
+                        <div class="task-text">Configure crontab for 10-minute intervals</div>
                         <div class="task-time">~10 min</div>
                     </div>
                 </div>
@@ -697,23 +722,28 @@
             <div class="section" data-section="final-steps">
                 <div class="section-header">
                     <div class="section-icon">✓</div>
-                    <div class="section-title">Final Steps & Submission</div>
-                    <div class="section-progress">0/3</div>
+                    <div class="section-title">✅ Evaluation Preparation</div>
+                    <div class="section-progress">0/4</div>
                 </div>
                 <div class="tasks">
                     <div class="task" data-task="generate-signature">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Generate signature.txt</div>
-                        <div class="task-time">~10 min</div>
+                        <div class="task-text">Generate signature.txt file for submission</div>
+                        <div class="task-time">~5 min</div>
+                    </div>
+                    <div class="task" data-task="evaluation-commands">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Prepare and test evaluation commands</div>
+                        <div class="task-time">~30 min</div>
                     </div>
                     <div class="task" data-task="final-testing">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Final system testing</div>
+                        <div class="task-text">Complete system functionality test</div>
                         <div class="task-time">~30 min</div>
                     </div>
                     <div class="task" data-task="submission">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Submit project</div>
+                        <div class="task-text">Submit project on intra</div>
                         <div class="task-time">~5 min</div>
                     </div>
                 </div>
@@ -722,29 +752,34 @@
             <div class="section" data-section="bonus">
                 <div class="section-header">
                     <div class="section-icon">✓</div>
-                    <div class="section-title">Bonus: WordPress Setup</div>
-                    <div class="section-progress">0/4</div>
+                    <div class="section-title">😊 Bonus: WordPress Setup</div>
+                    <div class="section-progress">0/5</div>
                 </div>
                 <div class="tasks">
                     <div class="task" data-task="bonus-partitions">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Advanced partition structure</div>
-                        <div class="task-time">~45 min</div>
+                        <div class="task-text">Set up additional partition structure</div>
+                        <div class="task-time">~30 min</div>
                     </div>
                     <div class="task" data-task="mariadb-setup">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Install and configure MariaDB</div>
+                        <div class="task-text">Install and configure MariaDB database</div>
                         <div class="task-time">~30 min</div>
                     </div>
                     <div class="task" data-task="lighttpd-php">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Configure Lighttpd and PHP</div>
+                        <div class="task-text">Install Lighttpd web server and PHP</div>
                         <div class="task-time">~25 min</div>
                     </div>
                     <div class="task" data-task="wordpress-install">
                         <div class="task-checkbox">✓</div>
-                        <div class="task-text">Install and configure WordPress</div>
-                        <div class="task-time">~40 min</div>
+                        <div class="task-text">Download and configure WordPress</div>
+                        <div class="task-time">~30 min</div>
+                    </div>
+                    <div class="task" data-task="bonus-testing">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Test WordPress functionality and access</div>
+                        <div class="task-time">~15 min</div>
                     </div>
                 </div>
             </div>
@@ -764,11 +799,11 @@
     <script>
         // Achievement definitions
         const achievements = {
-            firstSteps: { threshold: 2, title: "First Steps", message: "You've started your Born2beRoot journey!" },
-            vmMaster: { threshold: 8, title: "VM Master", message: "Virtual machine setup complete!" },
-            securityGuru: { threshold: 18, title: "Security Guru", message: "Security configurations mastered!" },
-            scriptNinja: { threshold: 22, title: "Script Ninja", message: "Monitoring script is working!" },
-            born2beRoot: { threshold: 24, title: "Born2beRoot Champion!", message: "Congratulations! You've completed the project!" }
+            firstSteps: { threshold: 3, title: "First Steps", message: "You've started your Born2beRoot journey!" },
+            vmMaster: { threshold: 14, title: "VM Master", message: "Virtual machine and Debian installation complete!" },
+            securityGuru: { threshold: 22, title: "Security Guru", message: "System security configurations mastered!" },
+            scriptNinja: { threshold: 26, title: "Script Ninja", message: "Monitoring script is working perfectly!" },
+            born2beRoot: { threshold: 30, title: "Born2beRoot Champion!", message: "Congratulations! You've completed the mandatory project!" }
         };
 
         // Generate sitemap data for SEO
