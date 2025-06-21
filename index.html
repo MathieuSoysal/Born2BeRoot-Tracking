@@ -1,45 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Born2beRoot Progress Tracker - 42 School Project Manager | System Administration Learning</title>
-    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YQN2MTEQ21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YQN2MTEQ21');
+    </script>
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Master Born2beRoot project for 42 School with our interactive progress tracker. Learn system administration, Linux Debian setup, virtual machines, SSH configuration, firewall security, and automated monitoring scripts. Complete step-by-step guide for 42 students.">
-    <meta name="keywords" content="Born2beRoot, 42 School, system administration tutorial, Debian Linux guide, virtual machine setup, VirtualBox tutorial, SSH configuration, UFW firewall, Linux security, monitoring scripts, crontab automation, 42 projects, student learning tracker">
+    <meta name="description"
+        content="Master Born2beRoot project for 42 School with our interactive progress tracker. Learn system administration, Linux Debian setup, virtual machines, SSH configuration, firewall security, and automated monitoring scripts. Complete step-by-step guide for 42 students.">
+    <meta name="keywords"
+        content="Born2beRoot, 42 School, system administration tutorial, Debian Linux guide, virtual machine setup, VirtualBox tutorial, SSH configuration, UFW firewall, Linux security, monitoring scripts, crontab automation, 42 projects, student learning tracker">
     <meta name="author" content="42 School Student Project">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#4facfe">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://born2beroot-tracking.pages.dev/">
     <meta property="og:title" content="Born2beRoot Progress Tracker - 42 School Project Manager">
-    <meta property="og:description" content="Interactive progress tracker for the Born2beRoot project at 42 School. Master system administration fundamentals with guided tasks and achievements.">
+    <meta property="og:description"
+        content="Interactive progress tracker for the Born2beRoot project at 42 School. Master system administration fundamentals with guided tasks and achievements.">
     <meta property="og:image" content="https://born2beroot-tracking.pages.dev/og-image.png">
     <meta property="og:site_name" content="Born2beRoot Tracker">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://born2beroot-tracking.pages.dev/">
     <meta property="twitter:title" content="Born2beRoot Progress Tracker - 42 School Project">
-    <meta property="twitter:description" content="Track your system administration learning journey with this interactive Born2beRoot project manager for 42 School students.">
+    <meta property="twitter:description"
+        content="Track your system administration learning journey with this interactive Born2beRoot project manager for 42 School students.">
     <meta property="twitter:image" content="https://born2beroot-tracking.pages.dev/og-image.png">
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://born2beroot-tracking.pages.dev/">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
-    
+
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-    
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -72,10 +87,10 @@
       }
     }
     </script>
-    
+
     <!-- Google Site Verification -->
     <meta name="google-site-verification" content="google3ad691e498d4b144" />
-    
+
     <!-- Breadcrumb Structured Data -->
     <script type="application/ld+json">
     {
@@ -94,7 +109,7 @@
       }]
     }
     </script>
-    
+
     <!-- FAQ Structured Data -->
     <script type="application/ld+json">
     {
@@ -145,7 +160,7 @@
             margin: 0 auto;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
 
@@ -305,7 +320,8 @@
             font-weight: 600;
             color: #1f2937;
             flex: 1;
-            margin: 0; /* Reset default h2 margin */
+            margin: 0;
+            /* Reset default h2 margin */
         }
 
         .section-progress {
@@ -393,7 +409,7 @@
             border-radius: 20px;
             padding: 40px;
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             display: none;
         }
@@ -404,8 +420,15 @@
         }
 
         @keyframes celebrationPop {
-            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
         }
 
         /* Confetti Animation */
@@ -428,32 +451,132 @@
             animation: confetti-fall 3s linear infinite;
         }
 
-        .confetti:nth-child(1) { background: #e74c3c; left: 10%; animation-delay: 0s; }
-        .confetti:nth-child(2) { background: #f39c12; left: 20%; animation-delay: 0.2s; }
-        .confetti:nth-child(3) { background: #2ecc71; left: 30%; animation-delay: 0.4s; }
-        .confetti:nth-child(4) { background: #3498db; left: 40%; animation-delay: 0.6s; }
-        .confetti:nth-child(5) { background: #9b59b6; left: 50%; animation-delay: 0.8s; }
-        .confetti:nth-child(6) { background: #e67e22; left: 60%; animation-delay: 1s; }
-        .confetti:nth-child(7) { background: #1abc9c; left: 70%; animation-delay: 1.2s; }
-        .confetti:nth-child(8) { background: #f1c40f; left: 80%; animation-delay: 1.4s; }
-        .confetti:nth-child(9) { background: #e91e63; left: 90%; animation-delay: 1.6s; }
-        .confetti:nth-child(10) { background: #8e44ad; left: 5%; animation-delay: 1.8s; }
-        .confetti:nth-child(11) { background: #27ae60; left: 15%; animation-delay: 2s; }
-        .confetti:nth-child(12) { background: #2980b9; left: 25%; animation-delay: 2.2s; }
-        .confetti:nth-child(13) { background: #d35400; left: 35%; animation-delay: 2.4s; }
-        .confetti:nth-child(14) { background: #c0392b; left: 45%; animation-delay: 2.6s; }
-        .confetti:nth-child(15) { background: #16a085; left: 55%; animation-delay: 2.8s; }
-        .confetti:nth-child(16) { background: #f39c12; left: 65%; animation-delay: 3s; }
-        .confetti:nth-child(17) { background: #e74c3c; left: 75%; animation-delay: 0.1s; }
-        .confetti:nth-child(18) { background: #2ecc71; left: 85%; animation-delay: 0.3s; }
-        .confetti:nth-child(19) { background: #3498db; left: 95%; animation-delay: 0.5s; }
-        .confetti:nth-child(20) { background: #9b59b6; left: 12%; animation-delay: 0.7s; }
+        .confetti:nth-child(1) {
+            background: #e74c3c;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .confetti:nth-child(2) {
+            background: #f39c12;
+            left: 20%;
+            animation-delay: 0.2s;
+        }
+
+        .confetti:nth-child(3) {
+            background: #2ecc71;
+            left: 30%;
+            animation-delay: 0.4s;
+        }
+
+        .confetti:nth-child(4) {
+            background: #3498db;
+            left: 40%;
+            animation-delay: 0.6s;
+        }
+
+        .confetti:nth-child(5) {
+            background: #9b59b6;
+            left: 50%;
+            animation-delay: 0.8s;
+        }
+
+        .confetti:nth-child(6) {
+            background: #e67e22;
+            left: 60%;
+            animation-delay: 1s;
+        }
+
+        .confetti:nth-child(7) {
+            background: #1abc9c;
+            left: 70%;
+            animation-delay: 1.2s;
+        }
+
+        .confetti:nth-child(8) {
+            background: #f1c40f;
+            left: 80%;
+            animation-delay: 1.4s;
+        }
+
+        .confetti:nth-child(9) {
+            background: #e91e63;
+            left: 90%;
+            animation-delay: 1.6s;
+        }
+
+        .confetti:nth-child(10) {
+            background: #8e44ad;
+            left: 5%;
+            animation-delay: 1.8s;
+        }
+
+        .confetti:nth-child(11) {
+            background: #27ae60;
+            left: 15%;
+            animation-delay: 2s;
+        }
+
+        .confetti:nth-child(12) {
+            background: #2980b9;
+            left: 25%;
+            animation-delay: 2.2s;
+        }
+
+        .confetti:nth-child(13) {
+            background: #d35400;
+            left: 35%;
+            animation-delay: 2.4s;
+        }
+
+        .confetti:nth-child(14) {
+            background: #c0392b;
+            left: 45%;
+            animation-delay: 2.6s;
+        }
+
+        .confetti:nth-child(15) {
+            background: #16a085;
+            left: 55%;
+            animation-delay: 2.8s;
+        }
+
+        .confetti:nth-child(16) {
+            background: #f39c12;
+            left: 65%;
+            animation-delay: 3s;
+        }
+
+        .confetti:nth-child(17) {
+            background: #e74c3c;
+            left: 75%;
+            animation-delay: 0.1s;
+        }
+
+        .confetti:nth-child(18) {
+            background: #2ecc71;
+            left: 85%;
+            animation-delay: 0.3s;
+        }
+
+        .confetti:nth-child(19) {
+            background: #3498db;
+            left: 95%;
+            animation-delay: 0.5s;
+        }
+
+        .confetti:nth-child(20) {
+            background: #9b59b6;
+            left: 12%;
+            animation-delay: 0.7s;
+        }
 
         @keyframes confetti-fall {
             0% {
                 transform: translateY(-100vh) rotate(0deg);
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(100vh) rotate(720deg);
                 opacity: 0;
@@ -589,24 +712,24 @@
             .header h1 {
                 font-size: 2rem;
             }
-            
+
             .achievements {
                 justify-content: center;
             }
-            
+
             .achievement {
                 min-width: 100px;
             }
-            
+
             .container {
                 margin: 10px;
                 border-radius: 15px;
             }
-            
+
             .header {
                 padding: 20px;
             }
-            
+
             .content {
                 padding: 20px;
             }
@@ -632,11 +755,11 @@
             .section {
                 border: 2px solid;
             }
-            
+
             .achievement {
                 border-width: 3px;
             }
-            
+
             .task-checkbox {
                 border-width: 3px;
             }
@@ -708,17 +831,18 @@
             .faq-section {
                 padding: 30px 20px;
             }
-            
+
             .faq-section h2 {
                 font-size: 1.5rem;
             }
-            
+
             .faq-item {
                 padding: 20px;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header class="header">
@@ -728,11 +852,12 @@
 
         <section class="progress-overview" aria-labelledby="progress-heading">
             <h2 id="progress-heading" class="sr-only">Progress Overview</h2>
-            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="progressText">
+            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+                aria-labelledby="progressText">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
             <div class="progress-text" id="progressText">0% Complete - Let's get started!</div>
-            
+
             <div class="achievements" role="list" aria-label="Achievements">
                 <div class="achievement" id="firstSteps" role="listitem" aria-label="First Steps achievement">
                     <div class="achievement-icon" aria-hidden="true">🎯</div>
@@ -774,7 +899,8 @@
 
         <main class="content">
             <section class="section" data-section="vm-setup">
-                <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="vm-setup-tasks">
+                <div class="section-header" tabindex="0" role="button" aria-expanded="false"
+                    aria-controls="vm-setup-tasks">
                     <div class="section-icon" aria-hidden="true">✓</div>
                     <h2 class="section-title">🛠️ Virtual Machine Setup</h2>
                     <div class="section-progress" aria-live="polite">0/5</div>
@@ -814,7 +940,8 @@
             </section>
 
             <section class="section" data-section="debian-install">
-                <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="debian-install-tasks">
+                <div class="section-header" tabindex="0" role="button" aria-expanded="false"
+                    aria-controls="debian-install-tasks">
                     <div class="section-icon" aria-hidden="true">✓</div>
                     <h2 class="section-title">🌀 Debian Installation</h2>
                     <div class="section-progress" aria-live="polite">0/9</div>
@@ -878,7 +1005,8 @@
             </section>
 
             <section class="section" data-section="system-config">
-                <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="system-config-tasks">
+                <div class="section-header" tabindex="0" role="button" aria-expanded="false"
+                    aria-controls="system-config-tasks">
                     <div class="section-icon" aria-hidden="true">✓</div>
                     <h2 class="section-title">⚙️ System Configuration</h2>
                     <div class="section-progress" aria-live="polite">0/8</div>
@@ -936,7 +1064,8 @@
             </section>
 
             <section class="section" data-section="monitoring">
-                <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="monitoring-tasks">
+                <div class="section-header" tabindex="0" role="button" aria-expanded="false"
+                    aria-controls="monitoring-tasks">
                     <div class="section-icon" aria-hidden="true">✓</div>
                     <h2 class="section-title">🧾 Monitoring Script</h2>
                     <div class="section-progress" aria-live="polite">0/4</div>
@@ -970,7 +1099,8 @@
             </section>
 
             <section class="section" data-section="final-steps">
-                <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="final-steps-tasks">
+                <div class="section-header" tabindex="0" role="button" aria-expanded="false"
+                    aria-controls="final-steps-tasks">
                     <div class="section-icon" aria-hidden="true">✓</div>
                     <h2 class="section-title">✅ Evaluation Preparation</h2>
                     <div class="section-progress" aria-live="polite">0/4</div>
@@ -1004,7 +1134,8 @@
             </section>
 
             <section class="section" data-section="bonus">
-                <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="bonus-tasks">
+                <div class="section-header" tabindex="0" role="button" aria-expanded="false"
+                    aria-controls="bonus-tasks">
                     <div class="section-icon" aria-hidden="true">✓</div>
                     <h2 class="section-title">😊 Bonus: WordPress Setup</h2>
                     <div class="section-progress" aria-live="polite">0/5</div>
@@ -1043,30 +1174,41 @@
                 </div>
             </section>
         </main>
-        
+
         <!-- FAQ Section for SEO -->
         <section class="faq-section">
             <h2>Frequently Asked Questions</h2>
             <div class="faq-container">
                 <div class="faq-item">
                     <h3>What is Born2beRoot project at 42 School?</h3>
-                    <p>Born2beRoot is a system administration project that teaches students how to set up and configure a virtual machine with Debian Linux, implement security measures, and create monitoring scripts. It's a fundamental project that introduces 42 students to server administration and Linux system management.</p>
+                    <p>Born2beRoot is a system administration project that teaches students how to set up and configure
+                        a virtual machine with Debian Linux, implement security measures, and create monitoring scripts.
+                        It's a fundamental project that introduces 42 students to server administration and Linux system
+                        management.</p>
                 </div>
                 <div class="faq-item">
                     <h3>How long does Born2beRoot take to complete?</h3>
-                    <p>Most students complete the mandatory requirements in 15-25 hours over 3-5 days, with bonus objectives adding an additional 5-10 hours. The project includes VM setup, Debian installation, user management, SSH configuration, firewall setup, and scripting tasks.</p>
+                    <p>Most students complete the mandatory requirements in 15-25 hours over 3-5 days, with bonus
+                        objectives adding an additional 5-10 hours. The project includes VM setup, Debian installation,
+                        user management, SSH configuration, firewall setup, and scripting tasks.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Do I need prior Linux experience for Born2beRoot?</h3>
-                    <p>While helpful, prior Linux experience isn't required. This project is designed to teach system administration fundamentals from the ground up. You'll learn VirtualBox, Debian Linux, SSH, UFW firewall, sudo configuration, and bash scripting through hands-on practice.</p>
+                    <p>While helpful, prior Linux experience isn't required. This project is designed to teach system
+                        administration fundamentals from the ground up. You'll learn VirtualBox, Debian Linux, SSH, UFW
+                        firewall, sudo configuration, and bash scripting through hands-on practice.</p>
                 </div>
                 <div class="faq-item">
                     <h3>What tools do I need for the Born2beRoot project?</h3>
-                    <p>You'll need VirtualBox (or UTM for Mac), the Debian ISO image, and access to the 42 School evaluation system. Our progress tracker helps you manage all the required tasks including VM configuration, network setup, and security implementation.</p>
+                    <p>You'll need VirtualBox (or UTM for Mac), the Debian ISO image, and access to the 42 School
+                        evaluation system. Our progress tracker helps you manage all the required tasks including VM
+                        configuration, network setup, and security implementation.</p>
                 </div>
                 <div class="faq-item">
                     <h3>How does this progress tracker help with Born2beRoot?</h3>
-                    <p>Our interactive tracker breaks down the Born2beRoot project into manageable tasks, tracks your completion progress, provides helpful tips, and ensures you don't miss any requirements for the 42 School evaluation. It includes both mandatory and bonus objectives.</p>
+                    <p>Our interactive tracker breaks down the Born2beRoot project into manageable tasks, tracks your
+                        completion progress, provides helpful tips, and ensures you don't miss any requirements for the
+                        42 School evaluation. It includes both mandatory and bonus objectives.</p>
                 </div>
             </div>
         </section>
@@ -1105,14 +1247,14 @@
                         "item": window.location.origin
                     },
                     {
-                        "@type": "ListItem", 
+                        "@type": "ListItem",
                         "position": 2,
                         "name": "Born2beRoot Progress Tracker",
                         "item": window.location.href
                     }
                 ]
             };
-            
+
             // Add sitemap to head
             const script = document.createElement('script');
             script.type = 'application/ld+json';
@@ -1125,12 +1267,12 @@
             const completedTasks = document.querySelectorAll('.task.completed').length;
             const totalTasks = document.querySelectorAll('.task').length;
             const percentage = Math.round((completedTasks / totalTasks) * 100);
-            
+
             let titleSuffix = '';
             if (percentage > 0) {
                 titleSuffix = ` - ${percentage}% Complete`;
             }
-            
+
             document.title = `Born2beRoot Progress Tracker${titleSuffix} - 42 School Project Manager | System Administration Learning`;
         }
 
@@ -1151,7 +1293,7 @@
                 "educationalLevel": "Intermediate",
                 "teaches": [
                     "Virtual Machine Setup and Management",
-                    "Debian Linux Installation and Configuration", 
+                    "Debian Linux Installation and Configuration",
                     "System Security and Firewall Configuration",
                     "SSH Configuration and Management",
                     "Automated Monitoring Scripts",
@@ -1163,7 +1305,7 @@
                 "learningResourceType": "hands-on project",
                 "educationalUse": "instruction"
             };
-            
+
             const script = document.createElement('script');
             script.type = 'application/ld+json';
             script.textContent = JSON.stringify(courseData);
@@ -1181,7 +1323,7 @@
                         task.classList.add('completed');
                     }
                 });
-                
+
                 // Update time spent
                 if (progress.timeSpent) {
                     document.getElementById('timeSpent').textContent = progress.timeSpent + 'h';
@@ -1194,7 +1336,7 @@
         function saveProgress() {
             const completedTasks = Array.from(document.querySelectorAll('.task.completed')).map(task => task.dataset.task);
             const timeSpent = document.getElementById('timeSpent').textContent.replace('h', '');
-            
+
             localStorage.setItem('born2beroot_progress', JSON.stringify({
                 completedTasks,
                 timeSpent
@@ -1206,13 +1348,13 @@
             const totalTasks = document.querySelectorAll('.task').length;
             const completedTasks = document.querySelectorAll('.task.completed').length;
             const percentage = Math.round((completedTasks / totalTasks) * 100);
-            
+
             // Update progress bar
             const progressFill = document.getElementById('progressFill');
             const progressBar = progressFill.parentElement;
             progressFill.style.width = percentage + '%';
             progressBar.setAttribute('aria-valuenow', percentage);
-            
+
             // Update progress text
             let progressMessage = '';
             if (percentage === 0) progressMessage = "Ready to start your system admin journey? 🚀";
@@ -1221,41 +1363,41 @@
             else if (percentage < 75) progressMessage = `${percentage}% Complete - Excellent progress! 🔥`;
             else if (percentage < 100) progressMessage = `${percentage}% Complete - Almost there, champion! 👑`;
             else progressMessage = `${percentage}% Complete - Born2beRoot Master! 🎉`;
-            
+
             document.getElementById('progressText').textContent = progressMessage;
-            
+
             // Update stats
             document.getElementById('completedTasks').textContent = completedTasks;
-            
+
             // Update sections
             document.querySelectorAll('.section').forEach(section => {
                 const tasks = section.querySelectorAll('.task');
                 const completed = section.querySelectorAll('.task.completed');
                 const progress = section.querySelector('.section-progress');
-                
+
                 progress.textContent = `${completed.length}/${tasks.length}`;
-                
+
                 if (completed.length === tasks.length && tasks.length > 0) {
                     section.classList.add('completed');
                 } else {
                     section.classList.remove('completed');
                 }
             });
-            
+
             // Update sections completed
             const totalSections = document.querySelectorAll('.section').length;
             const completedSections = document.querySelectorAll('.section.completed').length;
             document.getElementById('sectionsCompleted').textContent = completedSections;
-            
+
             // Check achievements
             checkAchievements(completedTasks);
-            
+
             // Calculate estimated time spent
             updateTimeEstimate();
-            
+
             // Update page title for SEO
             updatePageTitle();
-            
+
             // Update page title
             updatePageTitle();
         }
@@ -1265,7 +1407,7 @@
             Object.keys(achievements).forEach(achievementId => {
                 const achievement = achievements[achievementId];
                 const element = document.getElementById(achievementId);
-                
+
                 if (completedCount >= achievement.threshold && !element.classList.contains('unlocked')) {
                     element.classList.add('unlocked');
                     showCelebration(achievement.title, achievement.message);
@@ -1278,10 +1420,10 @@
             document.getElementById('celebrationTitle').textContent = title;
             document.getElementById('celebrationText').textContent = message;
             document.getElementById('celebration').classList.add('show');
-            
+
             // Trigger confetti animation
             createConfetti();
-             
+
             // Auto-close after 4 seconds (increased to enjoy the confetti)
             setTimeout(() => {
                 closeCelebration();
@@ -1293,19 +1435,19 @@
             const confettiContainer = document.getElementById('confettiContainer');
             const colors = ['#e74c3c', '#f39c12', '#2ecc71', '#3498db', '#9b59b6', '#e67e22', '#1abc9c', '#f1c40f', '#e91e63', '#8e44ad'];
             const shapes = ['square', 'circle', 'triangle', 'star'];
-            
+
             // Clear any existing confetti
             confettiContainer.innerHTML = '';
-            
+
             // Create 50 confetti pieces
             for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
-                
+
                 // Random shape
                 const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
                 confetti.classList.add(randomShape);
-                
+
                 // Random color
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 if (randomShape === 'triangle' || randomShape === 'star') {
@@ -1313,22 +1455,22 @@
                 } else {
                     confetti.style.backgroundColor = randomColor;
                 }
-                
+
                 // Random position and timing
                 confetti.style.left = Math.random() * 100 + '%';
                 confetti.style.animationDelay = Math.random() * 0 + 's';
                 confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                
+
                 // Random size
                 const size = Math.random() * 8 + 6;
                 if (randomShape === 'square' || randomShape === 'circle') {
                     confetti.style.width = size + 'px';
                     confetti.style.height = size + 'px';
                 }
-                
+
                 confettiContainer.appendChild(confetti);
             }
-            
+
             // Remove confetti after animation
             setTimeout(() => {
                 confettiContainer.innerHTML = '';
@@ -1344,13 +1486,13 @@
         function updateTimeEstimate() {
             const completedTasks = document.querySelectorAll('.task.completed');
             let totalMinutes = 0;
-            
+
             completedTasks.forEach(task => {
                 const timeText = task.querySelector('.task-time').textContent;
                 const minutes = parseInt(timeText.match(/\d+/)[0]);
                 totalMinutes += minutes;
             });
-            
+
             const hours = Math.round(totalMinutes / 60 * 10) / 10; // Round to 1 decimal
             document.getElementById('timeSpent').textContent = hours + 'h';
         }
@@ -1360,7 +1502,7 @@
             header.addEventListener('click', () => {
                 toggleSection(header);
             });
-            
+
             header.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -1373,10 +1515,10 @@
             const section = header.parentElement;
             const isExpanded = section.classList.contains('expanded');
             section.classList.toggle('expanded');
-            
+
             // Update ARIA attribute
             header.setAttribute('aria-expanded', !isExpanded);
-            
+
             // Announce to screen readers
             const sectionTitle = header.querySelector('.section-title').textContent;
             announceToScreenReader(`${sectionTitle} ${!isExpanded ? 'expanded' : 'collapsed'}`);
@@ -1387,7 +1529,7 @@
             task.addEventListener('click', () => {
                 toggleTask(task);
             });
-            
+
             task.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -1399,7 +1541,7 @@
         function toggleTask(task) {
             const wasCompleted = task.classList.contains('completed');
             task.classList.toggle('completed');
-            
+
             // Update screen reader text
             const srText = task.querySelector('.sr-only');
             if (task.classList.contains('completed')) {
@@ -1409,10 +1551,10 @@
                 srText.textContent = 'Task not completed';
                 announceToScreenReader('Task marked as not completed');
             }
-            
+
             updateProgress();
             saveProgress();
-            
+
             // Show mini celebration for task completion
             if (task.classList.contains('completed') && !wasCompleted) {
                 const taskText = task.querySelector('.task-text').textContent;
@@ -1427,9 +1569,9 @@
             announcement.setAttribute('aria-atomic', 'true');
             announcement.className = 'sr-only';
             announcement.textContent = message;
-            
+
             document.body.appendChild(announcement);
-            
+
             setTimeout(() => {
                 document.body.removeChild(announcement);
             }, 1000);
@@ -1438,25 +1580,25 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             loadProgress();
-            
+
             // Expand first section by default and set ARIA attributes
             const firstSection = document.querySelector('.section');
             const firstHeader = firstSection.querySelector('.section-header');
             firstSection.classList.add('expanded');
             firstHeader.setAttribute('aria-expanded', 'true');
-            
+
             // Set initial ARIA attributes for all section headers
             document.querySelectorAll('.section-header').forEach(header => {
                 if (!header.hasAttribute('aria-expanded')) {
                     header.setAttribute('aria-expanded', 'false');
                 }
             });
-            
+
             // SEO optimizations
             generateSitemap();
             addEducationalStructuredData();
             updatePageTitle();
-            
+
             // Announce page load to screen readers
             announceToScreenReader('Born2beRoot Progress Tracker loaded. Use Tab to navigate through sections and tasks.');
         });
@@ -1465,4 +1607,5 @@
         setInterval(saveProgress, 30000);
     </script>
 </body>
+
 </html>
