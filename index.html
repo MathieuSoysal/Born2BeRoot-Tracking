@@ -6,29 +6,29 @@
     <title>Born2beRoot Progress Tracker - 42 School Project Manager | System Administration Learning</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Track your Born2beRoot project progress for 42 School. Complete system administration tasks, monitor VM setup, Debian installation, security configuration, and scripting challenges. Interactive progress tracker with achievements.">
-    <meta name="keywords" content="Born2beRoot, 42 School, system administration, Debian, virtual machine, VM setup, Linux, SSH, firewall, monitoring script, student project tracker, 42 projects">
+    <meta name="description" content="Master Born2beRoot project for 42 School with our interactive progress tracker. Learn system administration, Linux Debian setup, virtual machines, SSH configuration, firewall security, and automated monitoring scripts. Complete step-by-step guide for 42 students.">
+    <meta name="keywords" content="Born2beRoot, 42 School, system administration tutorial, Debian Linux guide, virtual machine setup, VirtualBox tutorial, SSH configuration, UFW firewall, Linux security, monitoring scripts, crontab automation, 42 projects, student learning tracker">
     <meta name="author" content="42 School Student Project">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#4facfe">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="">
+    <meta property="og:url" content="https://born2beroot-tracking.pages.dev/">
     <meta property="og:title" content="Born2beRoot Progress Tracker - 42 School Project Manager">
     <meta property="og:description" content="Interactive progress tracker for the Born2beRoot project at 42 School. Master system administration fundamentals with guided tasks and achievements.">
-    <meta property="og:image" content="">
+    <meta property="og:image" content="https://born2beroot-tracking.pages.dev/og-image.png">
     <meta property="og:site_name" content="Born2beRoot Tracker">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="">
+    <meta property="twitter:url" content="https://born2beroot-tracking.pages.dev/">
     <meta property="twitter:title" content="Born2beRoot Progress Tracker - 42 School Project">
     <meta property="twitter:description" content="Track your system administration learning journey with this interactive Born2beRoot project manager for 42 School students.">
-    <meta property="twitter:image" content="">
+    <meta property="twitter:image" content="https://born2beroot-tracking.pages.dev/og-image.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="">
+    <link rel="canonical" href="https://born2beroot-tracking.pages.dev/">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -37,6 +37,9 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
     
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+    
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -44,7 +47,7 @@
       "@type": "WebApplication",
       "name": "Born2beRoot Progress Tracker",
       "description": "Interactive progress tracker for the Born2beRoot project at 42 School. Helps students track system administration learning tasks.",
-      "url": "",
+      "url": "https://born2beroot-tracking.pages.dev/",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web Browser",
       "offers": {
@@ -67,6 +70,58 @@
           "name": "42 School"
         }
       }
+    }
+    </script>
+    
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="google3ad691e498d4b144" />
+    
+    <!-- Breadcrumb Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://born2beroot-tracking.pages.dev/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Born2beRoot Progress Tracker",
+        "item": "https://born2beroot-tracking.pages.dev/index.html"
+      }]
+    }
+    </script>
+    
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "What is Born2beRoot project at 42 School?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Born2beRoot is a system administration project that teaches students how to set up and configure a virtual machine with Debian Linux, implement security measures, and create monitoring scripts. It's a fundamental project that introduces 42 students to server administration and Linux system management."
+        }
+      },{
+        "@type": "Question",
+        "name": "How long does Born2beRoot take to complete?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most students complete the mandatory requirements in 15-25 hours over 3-5 days, with bonus objectives adding an additional 5-10 hours. The project includes VM setup, Debian installation, user management, SSH configuration, firewall setup, and scripting tasks."
+        }
+      },{
+        "@type": "Question",
+        "name": "Do I need prior Linux experience for Born2beRoot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "While helpful, prior Linux experience isn't required. This project is designed to teach system administration fundamentals from the ground up. You'll learn VirtualBox, Debian Linux, SSH, UFW firewall, sudo configuration, and bash scripting through hands-on practice."
+        }
+      }]
     }
     </script>
     <style>
@@ -599,12 +654,75 @@
             white-space: nowrap;
             border: 0;
         }
+
+        /* FAQ Section Styles */
+        .faq-section {
+            padding: 40px 30px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            border-top: 1px solid #e0e7ff;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1e40af;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #4facfe;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item h3 {
+            color: #1e40af;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .faq-item p {
+            color: #4b5563;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 30px 20px;
+            }
+            
+            .faq-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .faq-item {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>🚀 Born2beRoot Progress Tracker</h1>
+            <h1><span role="img" aria-label="rocket">🚀</span> Born2beRoot Progress Tracker</h1>
             <p>Track your journey to becoming a system administration master!</p>
         </header>
 
@@ -925,6 +1043,33 @@
                 </div>
             </section>
         </main>
+        
+        <!-- FAQ Section for SEO -->
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <h3>What is Born2beRoot project at 42 School?</h3>
+                    <p>Born2beRoot is a system administration project that teaches students how to set up and configure a virtual machine with Debian Linux, implement security measures, and create monitoring scripts. It's a fundamental project that introduces 42 students to server administration and Linux system management.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How long does Born2beRoot take to complete?</h3>
+                    <p>Most students complete the mandatory requirements in 15-25 hours over 3-5 days, with bonus objectives adding an additional 5-10 hours. The project includes VM setup, Debian installation, user management, SSH configuration, firewall setup, and scripting tasks.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do I need prior Linux experience for Born2beRoot?</h3>
+                    <p>While helpful, prior Linux experience isn't required. This project is designed to teach system administration fundamentals from the ground up. You'll learn VirtualBox, Debian Linux, SSH, UFW firewall, sudo configuration, and bash scripting through hands-on practice.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What tools do I need for the Born2beRoot project?</h3>
+                    <p>You'll need VirtualBox (or UTM for Mac), the Debian ISO image, and access to the 42 School evaluation system. Our progress tracker helps you manage all the required tasks including VM configuration, network setup, and security implementation.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How does this progress tracker help with Born2beRoot?</h3>
+                    <p>Our interactive tracker breaks down the Born2beRoot project into manageable tasks, tracks your completion progress, provides helpful tips, and ensures you don't miss any requirements for the 42 School evaluation. It includes both mandatory and bonus objectives.</p>
+                </div>
+            </div>
+        </section>
     </div>
 
     <div class="celebration" id="celebration">
