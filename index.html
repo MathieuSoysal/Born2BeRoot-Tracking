@@ -81,6 +81,8 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            line-height: 1.6;
+            color: #1f2937;
         }
 
         .container {
@@ -127,16 +129,17 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #10b981, #34d399);
+            background: linear-gradient(90deg, #059669, #10b981);
             border-radius: 6px;
             transition: width 0.5s ease;
             width: 0%;
+            box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
         }
 
         .progress-text {
             text-align: center;
             font-size: 1.1rem;
-            color: #374151;
+            color: #1f2937;
             font-weight: 600;
         }
 
@@ -150,18 +153,21 @@
 
         .achievement {
             background: white;
-            border: 2px solid #e5e7eb;
+            border: 2px solid #d1d5db;
             border-radius: 12px;
             padding: 15px;
             text-align: center;
             min-width: 120px;
             transition: all 0.3s ease;
+            cursor: default;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .achievement.unlocked {
-            border-color: #10b981;
+            border-color: #059669;
             background: linear-gradient(135deg, #d1fae5, #ecfdf5);
             transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(5, 150, 105, 0.2);
         }
 
         .achievement-icon {
@@ -178,7 +184,7 @@
         .achievement-title {
             font-size: 0.9rem;
             font-weight: 600;
-            color: #374151;
+            color: #1f2937;
         }
 
         .content {
@@ -190,13 +196,15 @@
             background: #f9fafb;
             border-radius: 12px;
             padding: 20px;
-            border-left: 4px solid #e5e7eb;
+            border-left: 4px solid #d1d5db;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .section.completed {
-            border-left-color: #10b981;
+            border-left-color: #059669;
             background: linear-gradient(135deg, #d1fae5, #f0fdf4);
+            box-shadow: 0 4px 8px rgba(5, 150, 105, 0.1);
         }
 
         .section-header {
@@ -204,6 +212,18 @@
             align-items: center;
             margin-bottom: 15px;
             cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .section-header:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .section-header:focus-within {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
         }
 
         .section-icon {
@@ -221,14 +241,14 @@
         }
 
         .section.completed .section-icon {
-            background: #10b981;
-            border-color: #10b981;
+            background: #059669;
+            border-color: #059669;
         }
 
         .section-title {
             font-size: 1.3rem;
             font-weight: 600;
-            color: #374151;
+            color: #1f2937;
             flex: 1;
             margin: 0; /* Reset default h2 margin */
         }
@@ -251,9 +271,21 @@
         .task {
             display: flex;
             align-items: center;
-            padding: 12px 0;
+            padding: 12px 8px;
             border-bottom: 1px solid #e5e7eb;
             transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 6px;
+            margin: 4px 0;
+        }
+
+        .task:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        .task:focus-within {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
         }
 
         .task:last-child {
@@ -274,20 +306,21 @@
         }
 
         .task.completed .task-checkbox {
-            background: #10b981;
-            border-color: #10b981;
+            background: #059669;
+            border-color: #059669;
             color: white;
         }
 
         .task-text {
             flex: 1;
-            color: #374151;
+            color: #1f2937;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
 
         .task.completed .task-text {
             text-decoration: line-through;
-            color: #9ca3af;
+            color: #6b7280;
         }
 
         .task-time {
@@ -435,23 +468,38 @@
         .celebration-title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #374151;
+            color: #1f2937;
             margin-bottom: 10px;
         }
 
         .celebration-text {
-            color: #6b7280;
+            color: #4b5563;
             margin-bottom: 20px;
+            font-size: 1.1rem;
         }
 
         .celebration-close {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             border: none;
             padding: 12px 24px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+        }
+
+        .celebration-close:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+        }
+
+        .celebration-close:focus {
+            outline: 2px solid #60a5fa;
+            outline-offset: 2px;
         }
 
         .stats {
@@ -472,13 +520,14 @@
         .stat-number {
             font-size: 2rem;
             font-weight: 700;
-            color: #4facfe;
+            color: #3b82f6;
             margin-bottom: 5px;
         }
 
         .stat-label {
-            color: #6b7280;
+            color: #4b5563;
             font-size: 0.9rem;
+            font-weight: 500;
         }
 
         @media (max-width: 768px) {
@@ -493,297 +542,389 @@
             .achievement {
                 min-width: 100px;
             }
+            
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+
+        /* Focus styles for better accessibility */
+        *:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* Reduced motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .section {
+                border: 2px solid;
+            }
+            
+            .achievement {
+                border-width: 3px;
+            }
+            
+            .task-checkbox {
+                border-width: 3px;
+            }
+        }
+
+        /* Screen reader only text */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <header class="header">
             <h1>🚀 Born2beRoot Progress Tracker</h1>
             <p>Track your journey to becoming a system administration master!</p>
-        </div>
+        </header>
 
-        <div class="progress-overview">
-            <div class="progress-bar">
+        <section class="progress-overview" aria-labelledby="progress-heading">
+            <h2 id="progress-heading" class="sr-only">Progress Overview</h2>
+            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="progressText">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
             <div class="progress-text" id="progressText">0% Complete - Let's get started!</div>
             
-            <div class="achievements">
-                <div class="achievement" id="firstSteps">
-                    <div class="achievement-icon">🎯</div>
+            <div class="achievements" role="list" aria-label="Achievements">
+                <div class="achievement" id="firstSteps" role="listitem" aria-label="First Steps achievement">
+                    <div class="achievement-icon" aria-hidden="true">🎯</div>
                     <div class="achievement-title">First Steps</div>
                 </div>
-                <div class="achievement" id="vmMaster">
-                    <div class="achievement-icon">💻</div>
+                <div class="achievement" id="vmMaster" role="listitem" aria-label="VM Master achievement">
+                    <div class="achievement-icon" aria-hidden="true">💻</div>
                     <div class="achievement-title">VM Master</div>
                 </div>
-                <div class="achievement" id="securityGuru">
-                    <div class="achievement-icon">🔐</div>
+                <div class="achievement" id="securityGuru" role="listitem" aria-label="Security Guru achievement">
+                    <div class="achievement-icon" aria-hidden="true">🔐</div>
                     <div class="achievement-title">Security Guru</div>
                 </div>
-                <div class="achievement" id="scriptNinja">
-                    <div class="achievement-icon">📜</div>
+                <div class="achievement" id="scriptNinja" role="listitem" aria-label="Script Ninja achievement">
+                    <div class="achievement-icon" aria-hidden="true">📜</div>
                     <div class="achievement-title">Script Ninja</div>
                 </div>
-                <div class="achievement" id="born2beRoot">
-                    <div class="achievement-icon">👑</div>
+                <div class="achievement" id="born2beRoot" role="listitem" aria-label="Born2beRoot Champion achievement">
+                    <div class="achievement-icon" aria-hidden="true">👑</div>
                     <div class="achievement-title">Born2beRoot!</div>
                 </div>
             </div>
 
             <div class="stats">
                 <div class="stat-card">
-                    <div class="stat-number" id="completedTasks">0</div>
+                    <div class="stat-number" id="completedTasks" aria-live="polite">0</div>
                     <div class="stat-label">Tasks Completed</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" id="timeSpent">0h</div>
+                    <div class="stat-number" id="timeSpent" aria-live="polite">0h</div>
                     <div class="stat-label">Time Invested</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" id="sectionsCompleted">0</div>
+                    <div class="stat-number" id="sectionsCompleted" aria-live="polite">0</div>
                     <div class="stat-label">Sections Mastered</div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="content">
-            <div class="section" data-section="vm-setup">
-                <div class="section-header">
-                    <div class="section-icon">✓</div>
-                    <div class="section-title">🛠️ Virtual Machine Setup</div>
-                    <div class="section-progress">0/5</div>
+        <main class="content">
+            <section class="section" data-section="vm-setup">
+                <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="vm-setup-tasks">
+                    <div class="section-icon" aria-hidden="true">✓</div>
+                    <h2 class="section-title">🛠️ Virtual Machine Setup</h2>
+                    <div class="section-progress" aria-live="polite">0/5</div>
                 </div>
-                <div class="tasks">
-                    <div class="task" data-task="download-iso">
-                        <div class="task-checkbox">✓</div>
+                <div class="tasks" id="vm-setup-tasks" role="list">
+                    <div class="task" data-task="download-iso" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Download Debian 12.5.0 ISO (netinst)</div>
                         <div class="task-time">~10 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="install-virtualbox">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="install-virtualbox" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Install VirtualBox</div>
                         <div class="task-time">~15 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="create-vm">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="create-vm" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Create new VM (8GB RAM, 30GB disk)</div>
                         <div class="task-time">~10 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="vm-settings">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="vm-settings" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Configure VM settings and attach ISO</div>
                         <div class="task-time">~10 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="first-boot">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="first-boot" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Boot VM and verify ISO loading</div>
                         <div class="task-time">~5 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="section" data-section="debian-install">
-                <div class="section-header">
-                    <div class="section-icon">✓</div>
-                    <div class="section-title">🌀 Debian Installation</div>
-                    <div class="section-progress">0/9</div>
+            <section class="section" data-section="debian-install">
+                <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="debian-install-tasks">
+                    <div class="section-icon" aria-hidden="true">✓</div>
+                    <h2 class="section-title">🌀 Debian Installation</h2>
+                    <div class="section-progress" aria-live="polite">0/9</div>
                 </div>
-                <div class="tasks">
-                    <div class="task" data-task="install-start">
-                        <div class="task-checkbox">✓</div>
+                <div class="tasks" id="debian-install-tasks" role="list">
+                    <div class="task" data-task="install-start" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Start Debian installation process</div>
                         <div class="task-time">~5 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="language-locale">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="language-locale" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Configure language, country and keyboard</div>
                         <div class="task-time">~5 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="network-config">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="network-config" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Configure network and hostname ([login]42)</div>
                         <div class="task-time">~10 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="domain-setup">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="domain-setup" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Set domain name (leave empty)</div>
                         <div class="task-time">~2 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="root-password">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="root-password" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Set root password (strong password)</div>
                         <div class="task-time">~5 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="user-setup">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="user-setup" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Create user account ([login]42)</div>
                         <div class="task-time">~10 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="partition-disks">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="partition-disks" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Configure LVM with encryption (manual partitioning)</div>
                         <div class="task-time">~45 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="package-manager">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="package-manager" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Configure package manager (no extra software)</div>
                         <div class="task-time">~15 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="grub-install">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="grub-install" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Install GRUB bootloader and finish</div>
                         <div class="task-time">~10 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="section" data-section="system-config">
-                <div class="section-header">
-                    <div class="section-icon">✓</div>
-                    <div class="section-title">⚙️ System Configuration</div>
-                    <div class="section-progress">0/8</div>
+            <section class="section" data-section="system-config">
+                <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="system-config-tasks">
+                    <div class="section-icon" aria-hidden="true">✓</div>
+                    <h2 class="section-title">⚙️ System Configuration</h2>
+                    <div class="section-progress" aria-live="polite">0/8</div>
                 </div>
-                <div class="tasks">
-                    <div class="task" data-task="first-login">
-                        <div class="task-checkbox">✓</div>
+                <div class="tasks" id="system-config-tasks" role="list">
+                    <div class="task" data-task="first-login" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">First login and system verification</div>
                         <div class="task-time">~10 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="apt-update">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="apt-update" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Update system packages (apt update & upgrade)</div>
                         <div class="task-time">~15 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="sudo-install">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="sudo-install" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Install and configure sudo with strict rules</div>
                         <div class="task-time">~20 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="user-groups">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="user-groups" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Add user to sudo and user42 groups</div>
                         <div class="task-time">~10 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="ssh-setup">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="ssh-setup" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Install OpenSSH, configure port 4242, disable root login</div>
                         <div class="task-time">~25 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="ufw-firewall">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="ufw-firewall" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Install UFW, enable port 4242, configure firewall</div>
                         <div class="task-time">~15 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="password-policy">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="password-policy" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Configure strong password policy (pwquality)</div>
                         <div class="task-time">~20 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="hostname-check">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="hostname-check" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Verify hostname and implement hostname change script</div>
                         <div class="task-time">~10 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="section" data-section="monitoring">
-                <div class="section-header">
-                    <div class="section-icon">✓</div>
-                    <div class="section-title">🧾 Monitoring Script</div>
-                    <div class="section-progress">0/4</div>
+            <section class="section" data-section="monitoring">
+                <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="monitoring-tasks">
+                    <div class="section-icon" aria-hidden="true">✓</div>
+                    <h2 class="section-title">🧾 Monitoring Script</h2>
+                    <div class="section-progress" aria-live="polite">0/4</div>
                 </div>
-                <div class="tasks">
-                    <div class="task" data-task="create-script">
-                        <div class="task-checkbox">✓</div>
+                <div class="tasks" id="monitoring-tasks" role="list">
+                    <div class="task" data-task="create-script" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Create monitoring.sh with system information display</div>
                         <div class="task-time">~60 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="script-permissions">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="script-permissions" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Set proper script permissions and location</div>
                         <div class="task-time">~5 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="test-script">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="test-script" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Test script functionality and output format</div>
                         <div class="task-time">~15 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="crontab-setup">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="crontab-setup" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Configure crontab for 10-minute intervals</div>
                         <div class="task-time">~10 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="section" data-section="final-steps">
-                <div class="section-header">
-                    <div class="section-icon">✓</div>
-                    <div class="section-title">✅ Evaluation Preparation</div>
-                    <div class="section-progress">0/4</div>
+            <section class="section" data-section="final-steps">
+                <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="final-steps-tasks">
+                    <div class="section-icon" aria-hidden="true">✓</div>
+                    <h2 class="section-title">✅ Evaluation Preparation</h2>
+                    <div class="section-progress" aria-live="polite">0/4</div>
                 </div>
-                <div class="tasks">
-                    <div class="task" data-task="generate-signature">
-                        <div class="task-checkbox">✓</div>
+                <div class="tasks" id="final-steps-tasks" role="list">
+                    <div class="task" data-task="generate-signature" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Generate signature.txt file for submission</div>
                         <div class="task-time">~5 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="evaluation-commands">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="evaluation-commands" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Prepare and test evaluation commands</div>
                         <div class="task-time">~30 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="final-testing">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="final-testing" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Complete system functionality test</div>
                         <div class="task-time">~30 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="submission">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="submission" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Submit project on intra</div>
                         <div class="task-time">~5 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="section" data-section="bonus">
-                <div class="section-header">
-                    <div class="section-icon">✓</div>
-                    <div class="section-title">😊 Bonus: WordPress Setup</div>
-                    <div class="section-progress">0/5</div>
+            <section class="section" data-section="bonus">
+                <div class="section-header" tabindex="0" role="button" aria-expanded="false" aria-controls="bonus-tasks">
+                    <div class="section-icon" aria-hidden="true">✓</div>
+                    <h2 class="section-title">😊 Bonus: WordPress Setup</h2>
+                    <div class="section-progress" aria-live="polite">0/5</div>
                 </div>
-                <div class="tasks">
-                    <div class="task" data-task="bonus-partitions">
-                        <div class="task-checkbox">✓</div>
+                <div class="tasks" id="bonus-tasks" role="list">
+                    <div class="task" data-task="bonus-partitions" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Set up additional partition structure</div>
                         <div class="task-time">~30 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="mariadb-setup">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="mariadb-setup" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Install and configure MariaDB database</div>
                         <div class="task-time">~30 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="lighttpd-php">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="lighttpd-php" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Install Lighttpd web server and PHP</div>
                         <div class="task-time">~25 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="wordpress-install">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="wordpress-install" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Download and configure WordPress</div>
                         <div class="task-time">~30 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
-                    <div class="task" data-task="bonus-testing">
-                        <div class="task-checkbox">✓</div>
+                    <div class="task" data-task="bonus-testing" tabindex="0" role="listitem">
+                        <div class="task-checkbox" aria-hidden="true">✓</div>
                         <div class="task-text">Test WordPress functionality and access</div>
                         <div class="task-time">~15 min</div>
+                        <span class="sr-only">Task not completed</span>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     </div>
 
     <div class="celebration" id="celebration">
@@ -922,7 +1063,10 @@
             const percentage = Math.round((completedTasks / totalTasks) * 100);
             
             // Update progress bar
-            document.getElementById('progressFill').style.width = percentage + '%';
+            const progressFill = document.getElementById('progressFill');
+            const progressBar = progressFill.parentElement;
+            progressFill.style.width = percentage + '%';
+            progressBar.setAttribute('aria-valuenow', percentage);
             
             // Update progress text
             let progressMessage = '';
@@ -1069,37 +1213,107 @@
         // Toggle section expansion
         document.querySelectorAll('.section-header').forEach(header => {
             header.addEventListener('click', () => {
-                const section = header.parentElement;
-                section.classList.toggle('expanded');
+                toggleSection(header);
+            });
+            
+            header.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleSection(header);
+                }
             });
         });
+
+        function toggleSection(header) {
+            const section = header.parentElement;
+            const isExpanded = section.classList.contains('expanded');
+            section.classList.toggle('expanded');
+            
+            // Update ARIA attribute
+            header.setAttribute('aria-expanded', !isExpanded);
+            
+            // Announce to screen readers
+            const sectionTitle = header.querySelector('.section-title').textContent;
+            announceToScreenReader(`${sectionTitle} ${!isExpanded ? 'expanded' : 'collapsed'}`);
+        }
 
         // Handle task completion
         document.querySelectorAll('.task').forEach(task => {
             task.addEventListener('click', () => {
-                task.classList.toggle('completed');
-                updateProgress();
-                saveProgress();
-                
-                // Show mini celebration for task completion
-                if (task.classList.contains('completed')) {
-                    const taskText = task.querySelector('.task-text').textContent;
-                    // You could add a small notification here
+                toggleTask(task);
+            });
+            
+            task.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleTask(task);
                 }
             });
         });
+
+        function toggleTask(task) {
+            const wasCompleted = task.classList.contains('completed');
+            task.classList.toggle('completed');
+            
+            // Update screen reader text
+            const srText = task.querySelector('.sr-only');
+            if (task.classList.contains('completed')) {
+                srText.textContent = 'Task completed';
+                announceToScreenReader('Task marked as completed');
+            } else {
+                srText.textContent = 'Task not completed';
+                announceToScreenReader('Task marked as not completed');
+            }
+            
+            updateProgress();
+            saveProgress();
+            
+            // Show mini celebration for task completion
+            if (task.classList.contains('completed') && !wasCompleted) {
+                const taskText = task.querySelector('.task-text').textContent;
+                announceToScreenReader(`Great job! Completed: ${taskText}`);
+            }
+        }
+
+        // Function to announce messages to screen readers
+        function announceToScreenReader(message) {
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.setAttribute('aria-atomic', 'true');
+            announcement.className = 'sr-only';
+            announcement.textContent = message;
+            
+            document.body.appendChild(announcement);
+            
+            setTimeout(() => {
+                document.body.removeChild(announcement);
+            }, 1000);
+        }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             loadProgress();
             
-            // Expand first section by default
-            document.querySelector('.section').classList.add('expanded');
+            // Expand first section by default and set ARIA attributes
+            const firstSection = document.querySelector('.section');
+            const firstHeader = firstSection.querySelector('.section-header');
+            firstSection.classList.add('expanded');
+            firstHeader.setAttribute('aria-expanded', 'true');
+            
+            // Set initial ARIA attributes for all section headers
+            document.querySelectorAll('.section-header').forEach(header => {
+                if (!header.hasAttribute('aria-expanded')) {
+                    header.setAttribute('aria-expanded', 'false');
+                }
+            });
             
             // SEO optimizations
             generateSitemap();
             addEducationalStructuredData();
             updatePageTitle();
+            
+            // Announce page load to screen readers
+            announceToScreenReader('Born2beRoot Progress Tracker loaded. Use Tab to navigate through sections and tasks.');
         });
 
         // Auto-save every 30 seconds
