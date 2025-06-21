@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Born2beRoot Progress Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .progress-overview {
+            padding: 30px;
+            background: #f8f9ff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e5e7eb;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .achievements {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .achievement {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            min-width: 120px;
+            transition: all 0.3s ease;
+        }
+
+        .achievement.unlocked {
+            border-color: #10b981;
+            background: linear-gradient(135deg, #d1fae5, #ecfdf5);
+            transform: scale(1.05);
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .achievement.unlocked .achievement-icon {
+            filter: none;
+        }
+
+        .achievement-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .section.completed {
+            border-left-color: #10b981;
+            background: linear-gradient(135deg, #d1fae5, #f0fdf4);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .section-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #d1d5db;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .section.completed .section-icon {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #374151;
+            flex: 1;
+        }
+
+        .section-progress {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-left: auto;
+        }
+
+        .tasks {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .section.expanded .tasks {
+            display: block;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .task:last-child {
+            border-bottom: none;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            margin-right: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .task.completed .task-checkbox {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .task-text {
+            flex: 1;
+            color: #374151;
+            transition: all 0.3s ease;
+        }
+
+        .task.completed .task-text {
+            text-decoration: line-through;
+            color: #9ca3af;
+        }
+
+        .task-time {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-left: 10px;
+        }
+
+        .celebration {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+        }
+
+        .celebration.show {
+            display: block;
+            animation: celebrationPop 0.5s ease;
+        }
+
+        @keyframes celebrationPop {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        /* Confetti Animation */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f39c12;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        .confetti:nth-child(1) { background: #e74c3c; left: 10%; animation-delay: 0s; }
+        .confetti:nth-child(2) { background: #f39c12; left: 20%; animation-delay: 0.2s; }
+        .confetti:nth-child(3) { background: #2ecc71; left: 30%; animation-delay: 0.4s; }
+        .confetti:nth-child(4) { background: #3498db; left: 40%; animation-delay: 0.6s; }
+        .confetti:nth-child(5) { background: #9b59b6; left: 50%; animation-delay: 0.8s; }
+        .confetti:nth-child(6) { background: #e67e22; left: 60%; animation-delay: 1s; }
+        .confetti:nth-child(7) { background: #1abc9c; left: 70%; animation-delay: 1.2s; }
+        .confetti:nth-child(8) { background: #f1c40f; left: 80%; animation-delay: 1.4s; }
+        .confetti:nth-child(9) { background: #e91e63; left: 90%; animation-delay: 1.6s; }
+        .confetti:nth-child(10) { background: #8e44ad; left: 5%; animation-delay: 1.8s; }
+        .confetti:nth-child(11) { background: #27ae60; left: 15%; animation-delay: 2s; }
+        .confetti:nth-child(12) { background: #2980b9; left: 25%; animation-delay: 2.2s; }
+        .confetti:nth-child(13) { background: #d35400; left: 35%; animation-delay: 2.4s; }
+        .confetti:nth-child(14) { background: #c0392b; left: 45%; animation-delay: 2.6s; }
+        .confetti:nth-child(15) { background: #16a085; left: 55%; animation-delay: 2.8s; }
+        .confetti:nth-child(16) { background: #f39c12; left: 65%; animation-delay: 3s; }
+        .confetti:nth-child(17) { background: #e74c3c; left: 75%; animation-delay: 0.1s; }
+        .confetti:nth-child(18) { background: #2ecc71; left: 85%; animation-delay: 0.3s; }
+        .confetti:nth-child(19) { background: #3498db; left: 95%; animation-delay: 0.5s; }
+        .confetti:nth-child(20) { background: #9b59b6; left: 12%; animation-delay: 0.7s; }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Different confetti shapes */
+        .confetti.square {
+            border-radius: 0;
+        }
+
+        .confetti.circle {
+            border-radius: 50%;
+        }
+
+        .confetti.triangle {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid;
+            background: none !important;
+        }
+
+        .confetti.star {
+            background: none !important;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 7px solid;
+            position: relative;
+            transform: rotate(35deg);
+        }
+
+        .confetti.star:before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: -5px;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 7px solid;
+            transform: rotate(-70deg);
+        }
+
+        .confetti.star:after {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 3px;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 7px solid;
+            transform: rotate(70deg);
+        }
+
+        .celebration-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .celebration-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 10px;
+        }
+
+        .celebration-text {
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .celebration-close {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #e5e7eb;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4facfe;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .achievements {
+                justify-content: center;
+            }
+            
+            .achievement {
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Born2beRoot Progress Tracker</h1>
+            <p>Track your journey to becoming a system administration master!</p>
+        </div>
+
+        <div class="progress-overview">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">0% Complete - Let's get started!</div>
+            
+            <div class="achievements">
+                <div class="achievement" id="firstSteps">
+                    <div class="achievement-icon">🎯</div>
+                    <div class="achievement-title">First Steps</div>
+                </div>
+                <div class="achievement" id="vmMaster">
+                    <div class="achievement-icon">💻</div>
+                    <div class="achievement-title">VM Master</div>
+                </div>
+                <div class="achievement" id="securityGuru">
+                    <div class="achievement-icon">🔐</div>
+                    <div class="achievement-title">Security Guru</div>
+                </div>
+                <div class="achievement" id="scriptNinja">
+                    <div class="achievement-icon">📜</div>
+                    <div class="achievement-title">Script Ninja</div>
+                </div>
+                <div class="achievement" id="born2beRoot">
+                    <div class="achievement-icon">👑</div>
+                    <div class="achievement-title">Born2beRoot!</div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="completedTasks">0</div>
+                    <div class="stat-label">Tasks Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="timeSpent">0h</div>
+                    <div class="stat-label">Time Invested</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="sectionsCompleted">0</div>
+                    <div class="stat-label">Sections Mastered</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section" data-section="vm-setup">
+                <div class="section-header">
+                    <div class="section-icon">✓</div>
+                    <div class="section-title">Virtual Machine Setup</div>
+                    <div class="section-progress">0/4</div>
+                </div>
+                <div class="tasks">
+                    <div class="task" data-task="download-iso">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Download Debian ISO</div>
+                        <div class="task-time">~10 min</div>
+                    </div>
+                    <div class="task" data-task="create-vm">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Create VirtualBox VM</div>
+                        <div class="task-time">~15 min</div>
+                    </div>
+                    <div class="task" data-task="attach-iso">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Attach ISO to VM</div>
+                        <div class="task-time">~5 min</div>
+                    </div>
+                    <div class="task" data-task="first-boot">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">First boot and basic setup</div>
+                        <div class="task-time">~20 min</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" data-section="debian-install">
+                <div class="section-header">
+                    <div class="section-icon">✓</div>
+                    <div class="section-title">Debian Installation</div>
+                    <div class="section-progress">0/8</div>
+                </div>
+                <div class="tasks">
+                    <div class="task" data-task="language-locale">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Configure language and locale</div>
+                        <div class="task-time">~5 min</div>
+                    </div>
+                    <div class="task" data-task="network-config">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Configure network</div>
+                        <div class="task-time">~10 min</div>
+                    </div>
+                    <div class="task" data-task="hostname-setup">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Set hostname (login42)</div>
+                        <div class="task-time">~5 min</div>
+                    </div>
+                    <div class="task" data-task="partition-disks">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Partition disks with LVM encryption</div>
+                        <div class="task-time">~30 min</div>
+                    </div>
+                    <div class="task" data-task="user-setup">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Set up users and passwords</div>
+                        <div class="task-time">~10 min</div>
+                    </div>
+                    <div class="task" data-task="package-manager">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Configure package manager</div>
+                        <div class="task-time">~10 min</div>
+                    </div>
+                    <div class="task" data-task="grub-install">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Install GRUB bootloader</div>
+                        <div class="task-time">~5 min</div>
+                    </div>
+                    <div class="task" data-task="finish-install">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Finish installation and reboot</div>
+                        <div class="task-time">~10 min</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" data-section="system-config">
+                <div class="section-header">
+                    <div class="section-icon">✓</div>
+                    <div class="section-title">System Configuration</div>
+                    <div class="section-progress">0/6</div>
+                </div>
+                <div class="tasks">
+                    <div class="task" data-task="first-login">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">First connection and basic setup</div>
+                        <div class="task-time">~15 min</div>
+                    </div>
+                    <div class="task" data-task="sudo-install">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Install and configure sudo</div>
+                        <div class="task-time">~20 min</div>
+                    </div>
+                    <div class="task" data-task="user-groups">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Create users and groups</div>
+                        <div class="task-time">~15 min</div>
+                    </div>
+                    <div class="task" data-task="ssh-setup">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Install and configure SSH</div>
+                        <div class="task-time">~25 min</div>
+                    </div>
+                    <div class="task" data-task="ufw-firewall">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Configure UFW firewall</div>
+                        <div class="task-time">~15 min</div>
+                    </div>
+                    <div class="task" data-task="password-policy">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Implement password policy</div>
+                        <div class="task-time">~20 min</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" data-section="monitoring">
+                <div class="section-header">
+                    <div class="section-icon">✓</div>
+                    <div class="section-title">Monitoring Script</div>
+                    <div class="section-progress">0/3</div>
+                </div>
+                <div class="tasks">
+                    <div class="task" data-task="create-script">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Create monitoring.sh script</div>
+                        <div class="task-time">~45 min</div>
+                    </div>
+                    <div class="task" data-task="test-script">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Test script functionality</div>
+                        <div class="task-time">~15 min</div>
+                    </div>
+                    <div class="task" data-task="crontab-setup">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Configure crontab automation</div>
+                        <div class="task-time">~10 min</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" data-section="final-steps">
+                <div class="section-header">
+                    <div class="section-icon">✓</div>
+                    <div class="section-title">Final Steps & Submission</div>
+                    <div class="section-progress">0/3</div>
+                </div>
+                <div class="tasks">
+                    <div class="task" data-task="generate-signature">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Generate signature.txt</div>
+                        <div class="task-time">~10 min</div>
+                    </div>
+                    <div class="task" data-task="final-testing">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Final system testing</div>
+                        <div class="task-time">~30 min</div>
+                    </div>
+                    <div class="task" data-task="submission">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Submit project</div>
+                        <div class="task-time">~5 min</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" data-section="bonus">
+                <div class="section-header">
+                    <div class="section-icon">✓</div>
+                    <div class="section-title">Bonus: WordPress Setup</div>
+                    <div class="section-progress">0/4</div>
+                </div>
+                <div class="tasks">
+                    <div class="task" data-task="bonus-partitions">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Advanced partition structure</div>
+                        <div class="task-time">~45 min</div>
+                    </div>
+                    <div class="task" data-task="mariadb-setup">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Install and configure MariaDB</div>
+                        <div class="task-time">~30 min</div>
+                    </div>
+                    <div class="task" data-task="lighttpd-php">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Configure Lighttpd and PHP</div>
+                        <div class="task-time">~25 min</div>
+                    </div>
+                    <div class="task" data-task="wordpress-install">
+                        <div class="task-checkbox">✓</div>
+                        <div class="task-text">Install and configure WordPress</div>
+                        <div class="task-time">~40 min</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="celebration" id="celebration">
+        <div class="celebration-icon">🎉</div>
+        <div class="celebration-title" id="celebrationTitle">Achievement Unlocked!</div>
+        <div class="celebration-text" id="celebrationText">You're making great progress!</div>
+        <button class="celebration-close" onclick="closeCelebration()">Awesome!</button>
+    </div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <script>
+        // Achievement definitions
+        const achievements = {
+            firstSteps: { threshold: 2, title: "First Steps", message: "You've started your Born2beRoot journey!" },
+            vmMaster: { threshold: 8, title: "VM Master", message: "Virtual machine setup complete!" },
+            securityGuru: { threshold: 18, title: "Security Guru", message: "Security configurations mastered!" },
+            scriptNinja: { threshold: 22, title: "Script Ninja", message: "Monitoring script is working!" },
+            born2beRoot: { threshold: 24, title: "Born2beRoot Champion!", message: "Congratulations! You've completed the project!" }
+        };
+
+        // Load saved progress
+        function loadProgress() {
+            const saved = localStorage.getItem('born2beroot_progress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                progress.completedTasks.forEach(taskId => {
+                    const task = document.querySelector(`[data-task="${taskId}"]`);
+                    if (task) {
+                        task.classList.add('completed');
+                    }
+                });
+                
+                // Update time spent
+                if (progress.timeSpent) {
+                    document.getElementById('timeSpent').textContent = progress.timeSpent + 'h';
+                }
+            }
+            updateProgress();
+        }
+
+        // Save progress
+        function saveProgress() {
+            const completedTasks = Array.from(document.querySelectorAll('.task.completed')).map(task => task.dataset.task);
+            const timeSpent = document.getElementById('timeSpent').textContent.replace('h', '');
+            
+            localStorage.setItem('born2beroot_progress', JSON.stringify({
+                completedTasks,
+                timeSpent
+            }));
+        }
+
+        // Update progress display
+        function updateProgress() {
+            const totalTasks = document.querySelectorAll('.task').length;
+            const completedTasks = document.querySelectorAll('.task.completed').length;
+            const percentage = Math.round((completedTasks / totalTasks) * 100);
+            
+            // Update progress bar
+            document.getElementById('progressFill').style.width = percentage + '%';
+            
+            // Update progress text
+            let progressMessage = '';
+            if (percentage === 0) progressMessage = "Ready to start your system admin journey? 🚀";
+            else if (percentage < 25) progressMessage = `${percentage}% Complete - Great start! 💪`;
+            else if (percentage < 50) progressMessage = `${percentage}% Complete - You're getting the hang of it! 🎯`;
+            else if (percentage < 75) progressMessage = `${percentage}% Complete - Excellent progress! 🔥`;
+            else if (percentage < 100) progressMessage = `${percentage}% Complete - Almost there, champion! 👑`;
+            else progressMessage = `${percentage}% Complete - Born2beRoot Master! 🎉`;
+            
+            document.getElementById('progressText').textContent = progressMessage;
+            
+            // Update stats
+            document.getElementById('completedTasks').textContent = completedTasks;
+            
+            // Update sections
+            document.querySelectorAll('.section').forEach(section => {
+                const tasks = section.querySelectorAll('.task');
+                const completed = section.querySelectorAll('.task.completed');
+                const progress = section.querySelector('.section-progress');
+                
+                progress.textContent = `${completed.length}/${tasks.length}`;
+                
+                if (completed.length === tasks.length && tasks.length > 0) {
+                    section.classList.add('completed');
+                } else {
+                    section.classList.remove('completed');
+                }
+            });
+            
+            // Update sections completed
+            const totalSections = document.querySelectorAll('.section').length;
+            const completedSections = document.querySelectorAll('.section.completed').length;
+            document.getElementById('sectionsCompleted').textContent = completedSections;
+            
+            // Check achievements
+            checkAchievements(completedTasks);
+            
+            // Calculate estimated time spent
+            updateTimeEstimate();
+        }
+
+        // Check and unlock achievements
+        function checkAchievements(completedCount) {
+            Object.keys(achievements).forEach(achievementId => {
+                const achievement = achievements[achievementId];
+                const element = document.getElementById(achievementId);
+                
+                if (completedCount >= achievement.threshold && !element.classList.contains('unlocked')) {
+                    element.classList.add('unlocked');
+                    showCelebration(achievement.title, achievement.message);
+                }
+            });
+        }
+
+        // Show celebration modal
+        function showCelebration(title, message) {
+            document.getElementById('celebrationTitle').textContent = title;
+            document.getElementById('celebrationText').textContent = message;
+            document.getElementById('celebration').classList.add('show');
+            
+            // Trigger confetti animation
+            createConfetti();
+             
+            // Auto-close after 4 seconds (increased to enjoy the confetti)
+            setTimeout(() => {
+                closeCelebration();
+            }, 4000);
+        }
+
+        // Create confetti animation
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confettiContainer');
+            const colors = ['#e74c3c', '#f39c12', '#2ecc71', '#3498db', '#9b59b6', '#e67e22', '#1abc9c', '#f1c40f', '#e91e63', '#8e44ad'];
+            const shapes = ['square', 'circle', 'triangle', 'star'];
+            
+            // Clear any existing confetti
+            confettiContainer.innerHTML = '';
+            
+            // Create 50 confetti pieces
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random shape
+                const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+                confetti.classList.add(randomShape);
+                
+                // Random color
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                if (randomShape === 'triangle' || randomShape === 'star') {
+                    confetti.style.borderBottomColor = randomColor;
+                } else {
+                    confetti.style.backgroundColor = randomColor;
+                }
+                
+                // Random position and timing
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 0 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                
+                // Random size
+                const size = Math.random() * 8 + 6;
+                if (randomShape === 'square' || randomShape === 'circle') {
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                }
+                
+                confettiContainer.appendChild(confetti);
+            }
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                confettiContainer.innerHTML = '';
+            }, 6000);
+        }
+
+        // Close celebration modal
+        function closeCelebration() {
+            document.getElementById('celebration').classList.remove('show');
+        }
+
+        // Update time estimate
+        function updateTimeEstimate() {
+            const completedTasks = document.querySelectorAll('.task.completed');
+            let totalMinutes = 0;
+            
+            completedTasks.forEach(task => {
+                const timeText = task.querySelector('.task-time').textContent;
+                const minutes = parseInt(timeText.match(/\d+/)[0]);
+                totalMinutes += minutes;
+            });
+            
+            const hours = Math.round(totalMinutes / 60 * 10) / 10; // Round to 1 decimal
+            document.getElementById('timeSpent').textContent = hours + 'h';
+        }
+
+        // Toggle section expansion
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const section = header.parentElement;
+                section.classList.toggle('expanded');
+            });
+        });
+
+        // Handle task completion
+        document.querySelectorAll('.task').forEach(task => {
+            task.addEventListener('click', () => {
+                task.classList.toggle('completed');
+                updateProgress();
+                saveProgress();
+                
+                // Show mini celebration for task completion
+                if (task.classList.contains('completed')) {
+                    const taskText = task.querySelector('.task-text').textContent;
+                    // You could add a small notification here
+                }
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProgress();
+            
+            // Expand first section by default
+            document.querySelector('.section').classList.add('expanded');
+        });
+
+        // Auto-save every 30 seconds
+        setInterval(saveProgress, 30000);
+    </script>
+</body>
+</html>
